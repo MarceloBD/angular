@@ -1,4 +1,6 @@
+import { trigger,animate,style,transition,keyframes } from '@angular/animations';
 import { Component } from '@angular/core';
+
 
 
 @Component({
@@ -12,7 +14,24 @@ export class AppComponent {
 
   addTodo(value){
     this.todoArray.push(value)
-    console.log(this.todos)
+   
   }
- 
+
+   deleteItem(todo){
+   for(let i=0 ;i<= this.todoArray.length ;i++){
+    if(todo== this.todoArray[i]){
+     this.todoArray.splice(i,1)
+    }
+   }
+  }
+
+ todoSubmit(value:any){
+     if(value!==""){
+   		 this.todoArray.push(value.todo)
+     //this.todoForm.reset()
+    }else{
+      alert('Field required **')
+    }
+    
+  }
 }
