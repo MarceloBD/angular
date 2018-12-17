@@ -89,7 +89,7 @@ export class AppComponent {
 
         console.log('sending...')
         console.log(params.description)
-        http.send(params);
+        http.send(JSON.stringify(params));
         console.log('end');
   }
 
