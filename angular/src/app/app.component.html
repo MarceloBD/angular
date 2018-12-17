@@ -1,9 +1,21 @@
 <div class="container">
  <form #todoForm= "ngForm" (submit)="todoSubmit(todoForm.value); todoForm.resetForm()" >
   <div class="form-group">
-  <h1 class="text-center ">Todo App</h1>
-   <div class="input-group-prepend">
-       <input type="text" #todo  class="form-control" placeholder="Add Todo" name="todo" ngModel>
+  <h1 class="text-center ">Eventos</h1>
+   <div class="input-group-prepend container">
+   	   <div class="col">
+   	   		<div class="row">
+       			<input type="text" #todo  class="form-control" placeholder="Descricao" name="todo" ngModel>
+       		</div>
+       		<div class="row">
+       			<div class="col">
+       				<input type="text" #start  class="form-control" placeholder="Inicio" name="start" ngModel>
+       			</div>
+       			<div class="col">
+       				<input type="text" #end  class="form-control" placeholder="Termino" name="end" ngModel>
+   	  			</div>
+   	  		</div>
+   	  	</div>
     <span class="input-group-text" (click)="addTodo(todo.value)">
     <i class="material-icons">add</i></span>
    </div>
