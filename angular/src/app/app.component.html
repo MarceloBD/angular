@@ -16,14 +16,14 @@
    	  			</div>
    	  		</div>
    	  	</div>
-    <span class="input-group-text" (click)="addTodo(todo.value)">
+    <span class="input-group-text" (click)="addTodo(todo.value, start.value, end.value)">
     <i class="material-icons">add</i></span>
    </div>
    <input type="submit" style="visibility: hidden;" />
   </div>
   <div class="data">
   <ul class="list-unstyled">
-   		<li [@moveInLeft]  *ngFor="let todo of todoArray">{{todo.description}} <i (click)="deleteItem(todo)" class="material-icons">delete</i></li>
+   		<li [@moveInLeft]  *ngFor="let todo of todoArray"><b> I:</b> {{todo.start}} <b>T:</b> {{todo.end}} <b>D:</b> {{todo.description}} <i (click)="deleteItem(todo)" class="material-icons">delete</i></li>
   </ul>
  </div>
  </form>

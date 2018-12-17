@@ -32,11 +32,20 @@ transition("*=>void",[style({transform:"translateX(0px)"}),
 export class AppComponent {
   todoArray=[]
 
-  addTodo(value){
-  	var description = value
-  	var new_event = {description: description}
-    this.todoArray.push(new_event)
+  addTodo(description, start, end){
+  	var new_event = {description: description, start:start, end:end}
+    this.insertInOrder(new_event)
    
+  }
+
+  insertInOrder(new_event){
+   	var event_index = 0
+  	for(event_index ; event_index < this.todoArray.length; event_index++){
+  		if(this.todoArray[event_index].start > new_event.start){
+  			break;
+  		}
+  	}
+  	this.todoArray.splice(event_index, 0, new_event);
   }
 
    deleteItem(todo){
@@ -49,7 +58,7 @@ export class AppComponent {
 
  todoSubmit(value:any){
      if(value!==""){
-   		 this.addTodo(value);
+   		 this.addTodo(value.todo, value.start, value.end);
      //this.todoForm.reset()
     }else{
       alert('Field required **')
