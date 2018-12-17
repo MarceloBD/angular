@@ -33,7 +33,9 @@ export class AppComponent {
   todoArray=[]
 
   addTodo(value){
-    this.todoArray.push(value)
+  	var description = value
+  	var new_event = {description: description}
+    this.todoArray.push(new_event)
    
   }
 
@@ -47,7 +49,7 @@ export class AppComponent {
 
  todoSubmit(value:any){
      if(value!==""){
-   		 this.todoArray.push(value.todo)
+   		 this.addTodo(value);
      //this.todoForm.reset()
     }else{
       alert('Field required **')
