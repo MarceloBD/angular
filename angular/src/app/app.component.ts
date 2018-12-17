@@ -35,6 +35,7 @@ export class AppComponent {
   addTodo(description, start, end){
   	var new_event = {description: description, start:start, end:end}
     this.insertInOrder(new_event)
+    console.log(new_event)
     this.sendEventToServer(new_event)
    
   }
@@ -69,10 +70,10 @@ export class AppComponent {
   sendEventToServer(event){
         console.log('begin');
         var http = new XMLHttpRequest();
-        var params = "text=stuff";
+        var params = event;
         http.open("POST", "http://localhost:3000", true);
 
-        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.setRequestHeader("Content-Type", "application/json"  );
         //http.setRequestHeader("Content-length", params.length);
         //http.setRequestHeader("Connection", "close");
 
@@ -87,6 +88,7 @@ export class AppComponent {
         }
 
         console.log('sending...')
+        console.log(params.description)
         http.send(params);
         console.log('end');
   }
