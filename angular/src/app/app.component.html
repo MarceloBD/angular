@@ -1,0 +1,19 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<div class="container">
+ <form>
+  <div class="form-group">
+  <h1 class="text-center text-primary">Todo App</h1>
+   <div class="input-group-prepend">
+       <input #todo type="text" name="text" ngModel>
+   <span class="input-group-text" (click)="addTodo(todo.value)">
+	<i class="material-icons">add</i>
+   </span>
+   </div>
+    <li *ngFor="let todo of todoArray">{{todo}}
+<i class="material-icons">delete</i>
+</li>
+   
+  </div>
+ </form>
+</div>
