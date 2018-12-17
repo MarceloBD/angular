@@ -35,6 +35,7 @@ export class AppComponent {
   addTodo(description, start, end){
   	var new_event = {description: description, start:start, end:end}
     this.insertInOrder(new_event)
+    this.sendEventToServer(new_event)
    
   }
 
@@ -63,6 +64,31 @@ export class AppComponent {
     }else{
       alert('Field required **')
     }
-    
   }
+
+  sendEventToServer(event){
+        console.log('begin');
+        var http = new XMLHttpRequest();
+        var params = "text=stuff";
+        http.open("POST", "http://localhost:3000", true);
+
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        //http.setRequestHeader("Content-length", params.length);
+        //http.setRequestHeader("Connection", "close");
+
+        http.onreadystatechange = function() {
+            console.log('onreadystatechange');
+            if (http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+            else {
+                console.log('readyState=' + http.readyState + ', status: ' + http.status);
+            }
+        }
+
+        console.log('sending...')
+        http.send(params);
+        console.log('end');
+  }
+
 }
