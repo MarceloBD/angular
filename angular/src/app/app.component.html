@@ -1,7 +1,10 @@
 <div class="container">
  <form #todoForm= "ngForm" (submit)="todoSubmit(todoForm.value); todoForm.resetForm()" >
   <div class="form-group">
+    <div class="input-group-prepend container">
   <h1 class="text-center ">Eventos</h1>
+  <span class="input-group-text" (click)="readEventsFromServer()" style="right: 180px; top: 15px; border-radius: 0%; border: none;background: #f4f4f4;  color: #000;"> <i class="material-icons">autorenew</i></span>
+</div>
    <div class="input-group-prepend container">
    	   <div class="col">
    	   		<div class="row">

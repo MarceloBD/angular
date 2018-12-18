@@ -29,6 +29,8 @@ transition("*=>void",[style({transform:"translateX(0px)"}),
 ]
 })
 
+
+
 export class AppComponent {
   todoArray=[]
 
@@ -74,8 +76,6 @@ export class AppComponent {
         http.open("POST", "http://localhost:3000", true);
 
         http.setRequestHeader("Content-Type", "application/json"  );
-        //http.setRequestHeader("Content-length", params.length);
-        //http.setRequestHeader("Connection", "close");
 
         http.onreadystatechange = function() {
             console.log('onreadystatechange');
@@ -91,6 +91,60 @@ export class AppComponent {
         console.log(params.description)
         http.send(JSON.stringify(params));
         console.log('end');
+  }
+
+  readEventsFromServer(){
+    console.log('begin');
+        var http = new XMLHttpRequest();
+       
+        http.open("GET", "http://localhost:3000", true);
+
+
+        http.onreadystatechange = function() {
+            console.log('onreadystatechange');
+            if (http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+            else {
+                console.log('readyState=' + http.readyState + ', status: ' + http.status);
+            }
+        }
+
+        console.log('sending...')
+
+        http.send();
+        console.log('end');
+       http.onreadystatechange=(e)=>{
+          console.log(http.responseText)
+          //this.todoArray = http.responseText
+          this.todoArray = this.parser(http.responseText)
+      }
+  }
+
+  parser(text){
+    var array = []
+    var element = ''
+    for(var i=0; i<text.length; i++){
+        if(text[i] == '{'){
+            for(i = i; i<text.length; i++){
+               if(text[i] == '}'){
+                   element += text[i]
+                  break;}
+               element += text[i]
+            }
+            array.push(element)
+            element = ''
+        }
+    }
+
+    var new_array = []
+    for(var i=0; i<array.length; i++){
+      new_array.push(JSON.parse(array[i]))
+     console.log(JSON.parse(array[i]))
+
+    }
+    console.log(new_array)
+    return new_array 
   }
 
 }

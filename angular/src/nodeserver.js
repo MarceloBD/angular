@@ -26,12 +26,18 @@ app.post('/', function(req, res){
     res.writeHead(200, {'Content-Type': "application/x-www-form-urlencoded"});
     res.end('Adicionado');
     mongodb.saveEvent(req.body);
+
 });
 
 app.get('/', function (req, res) {
-    res.send('')
+  
+	    events = mongodb.readEvents();
+    	console.log(events)
+    	res.writeHead(200, {'Content-Type': "application/text"});
+   		res.end(JSON.stringify(events));
 })
 
 port = 3000;
 app.listen(port);
 console.log('Listening at http://localhost:' + port)
+
